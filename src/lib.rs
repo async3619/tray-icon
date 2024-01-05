@@ -393,6 +393,14 @@ impl TrayIcon {
         #[cfg(not(target_os = "macos"))]
         let _ = enable;
     }
+
+    pub fn is_dark_mode(&self) -> bool {
+        #[cfg(target_os = "macos")]
+        return self.tray.borrow_mut().is_dark_mode();
+
+        #[cfg(not(target_os = "macos"))]
+        return false;
+    }
 }
 
 /// Describes a tray event emitted when a tray icon is clicked
