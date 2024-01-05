@@ -1,10 +1,10 @@
 [package]
-name = "tray-icon"
+name = "tray-icon-ex"
 version = "0.11.1"
 edition = "2021"
 description = "Create tray icons for desktop applications"
-homepage = "https://github.com/tauri-apps/tray-icon"
-repository = "https://github.com/tauri-apps/tray-icon"
+homepage = "https://github.com/async3619/tray-icon-ex"
+repository = "https://github.com/async3619/tray-icon-ex"
 license = "MIT OR Apache-2.0"
 categories = [ "gui" ]
 

@@ -1,5 +1,5 @@
 {
-  "gitSiteUrl": "https://www.github.com/tauri-apps/tray-icon",
+  "gitSiteUrl": "https://github.com/async3619/tray-icon-ex",
   "timeout": 3600000,
   "pkgManagers": {
     "rust": {
@@ -38,12 +38,12 @@
     }
   },
   "packages": {
-    "tray-icon": {
+    "tray-icon-ex": {
       "path": ".",
       "manager": "rust",
       "assets": [
         {
-          "path": "${ pkg.path }/target/package/tray-icon-${ pkgFile.version }.crate",
+          "path": "${ pkg.path }/target/package/tray-icon-ex-${ pkgFile.version }.crate",
           "name": "${ pkg.pkg }-${ pkgFile.version }.crate"
         }
       ]

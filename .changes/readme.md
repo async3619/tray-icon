@@ -10,7 +10,7 @@ Use the following format:
 
 ```md
 ---
-"tray-icon": patch
+"tray-icon-ex": patch
 ---
 
 Change summary goes here
