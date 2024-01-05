@@ -34,19 +34,17 @@ const TRAY_MENU_ON_LEFT_CLICK: &str = "menu_on_left_click";
 pub struct TrayIcon {
     ns_status_item: Option<id>,
     tray_target: Option<id>,
-    button: Option<id>,
     id: TrayIconId,
     attrs: TrayIconAttributes,
 }
 
 impl TrayIcon {
     pub fn new(id: TrayIconId, attrs: TrayIconAttributes) -> crate::Result<Self> {
-        let (ns_status_item, tray_target, button) = Self::create(&id, &attrs)?;
+        let (ns_status_item, tray_target) = Self::create(&id, &attrs)?;
 
         let tray_icon = Self {
             ns_status_item: Some(ns_status_item),
             tray_target: Some(tray_target),
-            button: Some(button),
             id,
             attrs,
         };
@@ -54,7 +52,7 @@ impl TrayIcon {
         Ok(tray_icon)
     }
 
-    fn create(id: &TrayIconId, attrs: &TrayIconAttributes) -> crate::Result<(id, id, id)> {
+    fn create(id: &TrayIconId, attrs: &TrayIconAttributes) -> crate::Result<(id, id)> {
         let ns_status_item = unsafe {
             let ns_status_item =
                 NSStatusBar::systemStatusBar(nil).statusItemWithLength_(NSVariableStatusItemLength);
@@ -77,7 +75,7 @@ impl TrayIcon {
         Self::set_tooltip_inner(ns_status_item, attrs.tooltip.clone())?;
         Self::set_title_inner(ns_status_item, attrs.title.clone());
 
-        let (button, tray_target) = unsafe {
+        let tray_target = unsafe {
             let button = ns_status_item.button();
 
             let frame: NSRect = msg_send![button, frame];
@@ -98,10 +96,10 @@ impl TrayIcon {
 
             let _: () = msg_send![button, addSubview: tray_target];
 
-            (button, tray_target)
+            (tray_target)
         };
 
-        Ok((ns_status_item, tray_target, button))
+        Ok((ns_status_item, tray_target))
     }
 
     fn remove(&mut self) {
@@ -192,7 +190,7 @@ impl TrayIcon {
     pub fn set_visible(&mut self, visible: bool) -> crate::Result<()> {
         if visible {
             if self.ns_status_item.is_none() {
-                let (ns_status_item, tray_target, _) = Self::create(&self.id, &self.attrs)?;
+                let (ns_status_item, tray_target) = Self::create(&self.id, &self.attrs)?;
                 self.ns_status_item = Some(ns_status_item);
                 self.tray_target = Some(tray_target);
             }
@@ -223,9 +221,11 @@ impl TrayIcon {
         self.attrs.menu_on_left_click = enable;
     }
 
+    #[allow(dead_code)]
     pub fn is_dark_mode(&self) -> bool {
-        if let Some(button) = self.button {
+        if let Some(ns_status_item) = self.ns_status_item {
             unsafe {
+                let button = ns_status_item.button();
                 let effective_appearance: id = msg_send![button, effectiveAppearance];
                 let appearance_name: id = msg_send![effective_appearance, name];
                 let is_dark: bool = appearance_name == NSAppearanceNameVibrantDark;
