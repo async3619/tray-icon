@@ -3,8 +3,10 @@
 // SPDX-License-Identifier: MIT
 
 mod icon;
+
 use std::sync::Once;
 
+use cocoa::appkit::NSAppearanceNameVibrantDark;
 use cocoa::{
     appkit::{NSButton, NSImage, NSStatusBar, NSStatusItem, NSVariableStatusItemLength, NSWindow},
     base::{id, nil},
@@ -217,6 +219,22 @@ impl TrayIcon {
             }
         }
         self.attrs.menu_on_left_click = enable;
+    }
+
+    #[allow(dead_code)]
+    pub fn is_dark_mode(&self) -> bool {
+        if let Some(ns_status_item) = self.ns_status_item {
+            unsafe {
+                let button = ns_status_item.button();
+                let effective_appearance: id = msg_send![button, effectiveAppearance];
+                let appearance_name: id = msg_send![effective_appearance, name];
+                let is_dark: bool = appearance_name == NSAppearanceNameVibrantDark;
+
+                is_dark
+            }
+        } else {
+            false
+        }
     }
 }
 

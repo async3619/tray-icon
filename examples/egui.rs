@@ -4,7 +4,7 @@
 use std::{cell::RefCell, rc::Rc};
 
 use eframe::egui;
-use tray_icon::TrayIconBuilder;
+use tray_icon_ex::TrayIconBuilder;
 
 fn main() -> Result<(), eframe::Error> {
     let path = concat!(env!("CARGO_MANIFEST_DIR"), "/examples/icon.png");
@@ -15,7 +15,7 @@ fn main() -> Result<(), eframe::Error> {
     // where we initialize gtk and create the tray_icon
     #[cfg(target_os = "linux")]
     std::thread::spawn(|| {
-        use tray_icon::menu::Menu;
+        use tray_icon_ex::menu::Menu;
 
         gtk::init().unwrap();
         let _tray_icon = TrayIconBuilder::new()
@@ -63,7 +63,7 @@ impl Default for MyApp {
 
 impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        use tray_icon::TrayIconEvent;
+        use tray_icon_ex::TrayIconEvent;
 
         if let Ok(event) = TrayIconEvent::receiver().try_recv() {
             println!("tray event: {event:?}");
@@ -85,7 +85,7 @@ impl eframe::App for MyApp {
     }
 }
 
-fn load_icon(path: &std::path::Path) -> tray_icon::Icon {
+fn load_icon(path: &std::path::Path) -> tray_icon_ex::Icon {
     let (icon_rgba, icon_width, icon_height) = {
         let image = image::open(path)
             .expect("Failed to open icon path")
@@ -94,5 +94,5 @@ fn load_icon(path: &std::path::Path) -> tray_icon::Icon {
         let rgba = image.into_raw();
         (rgba, width, height)
     };
-    tray_icon::Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
+    tray_icon_ex::Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
 }

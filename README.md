@@ -38,7 +38,7 @@ sudo apt install libgtk-3-dev libxdo-dev libappindicator3-dev #or libayatana-app
 #### Create a tray icon without a menu.
 
 ```rs
-use tray_icon::TrayIconBuilder;
+use tray_icon_ex::TrayIconBuilder;
 
 let tray_icon = TrayIconBuilder::new()
     .with_tooltip("system-tray - tray icon library!")
@@ -50,7 +50,7 @@ let tray_icon = TrayIconBuilder::new()
 #### Create a tray icon with a menu.
 
 ```rs
-use tray_icon::{TrayIconBuilder, menu::Menu};
+use tray_icon_ex::{TrayIconBuilder, menu::Menu};
 
 let tray_menu = Menu::new();
 let tray_icon = TrayIconBuilder::new()
@@ -67,7 +67,7 @@ You can use `TrayIconEvent::receiver` to get a reference to the `TrayIconEventRe
 which you can use to listen to events when a click happens on the tray icon
 
 ```rs
-use tray_icon::TrayIconEvent;
+use tray_icon_ex::TrayIconEvent;
 
 if let Ok(event) = TrayIconEvent::receiver().try_recv() {
     println!("{:?}", event);
@@ -77,7 +77,7 @@ if let Ok(event) = TrayIconEvent::receiver().try_recv() {
 You can also listen for the menu events using `MenuEvent::receiver` to get events for the tray context menu.
 
 ```rs
-use tray_icon::{TrayIconEvent, menu::{MenuEvent}};
+use tray_icon_ex::{TrayIconEvent, menu::{MenuEvent}};
 
 if let Ok(event) = TrayIconEvent::receiver().try_recv() {
     println!("tray event: {:?}", event);
