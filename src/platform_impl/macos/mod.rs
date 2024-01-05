@@ -96,7 +96,7 @@ impl TrayIcon {
 
             let _: () = msg_send![button, addSubview: tray_target];
 
-            (tray_target)
+            tray_target
         };
 
         Ok((ns_status_item, tray_target))
