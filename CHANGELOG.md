@@ -1,5 +1,9 @@
 # Changelog
 
+## \[0.12.1]
+
+- [`e701b2f`](https://github.com/async3619/tray-icon-ex/commit/e701b2f3e0e1a964b323420983a9f8f89b27896b)([#3](https://github.com/async3619/tray-icon-ex/pull/3)) Expose `is_dark_mode` to the `tray-icon` module.
+
 ## \[0.12.0]
 
 - [`edb81fe`](https://github.com/async3619/tray-icon-ex/commit/edb81fe131c5794d28d90a0c1c1a26394ff35114)([#1](https://github.com/async3619/tray-icon-ex/pull/1)) Add `is_dark_mode` method to macOS specific `TrayIcon` struct. This method returns `true` if the system is in dark mode, and `false` if it is not.

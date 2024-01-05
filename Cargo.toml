@@ -1,6 +1,6 @@
 [package]
 name = "tray-icon-ex"
-version = "0.12.0"
+version = "0.12.1"
 edition = "2021"
 description = "Create tray icons for desktop applications"
 homepage = "https://github.com/async3619/tray-icon-ex"
