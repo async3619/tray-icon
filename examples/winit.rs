@@ -4,7 +4,7 @@
 
 #![allow(unused)]
 
-use tray_icon::{
+use tray_icon_ex::{
     menu::{AboutMetadata, Menu, MenuEvent, MenuItem, PredefinedMenuItem},
     TrayIconBuilder, TrayIconEvent,
 };
@@ -19,7 +19,7 @@ fn main() {
     // where we initialize gtk and create the tray_icon
     #[cfg(target_os = "linux")]
     std::thread::spawn(|| {
-        use tray_icon::menu::Menu;
+        use tray_icon_ex::menu::Menu;
 
         gtk::init().unwrap();
         let _tray_icon = TrayIconBuilder::new()
@@ -55,7 +55,7 @@ fn main() {
     });
 }
 
-fn load_icon(path: &std::path::Path) -> tray_icon::Icon {
+fn load_icon(path: &std::path::Path) -> tray_icon_ex::Icon {
     let (icon_rgba, icon_width, icon_height) = {
         let image = image::open(path)
             .expect("Failed to open icon path")
@@ -64,5 +64,5 @@ fn load_icon(path: &std::path::Path) -> tray_icon::Icon {
         let rgba = image.into_raw();
         (rgba, width, height)
     };
-    tray_icon::Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
+    tray_icon_ex::Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
 }
