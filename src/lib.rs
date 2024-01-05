@@ -38,7 +38,7 @@
 //! #### Create a tray icon without a menu.
 //!
 //! ```no_run
-//! use tray_icon::{TrayIconBuilder, Icon};
+//! use tray_icon_ex::{TrayIconBuilder, Icon};
 //!
 //! # let icon = Icon::from_rgba(Vec::new(), 0, 0).unwrap();
 //! let tray_icon = TrayIconBuilder::new()
@@ -51,7 +51,7 @@
 //! #### Create a tray icon with a menu.
 //!
 //! ```no_run
-//! use tray_icon::{TrayIconBuilder, menu::Menu,Icon};
+//! use tray_icon_ex::{TrayIconBuilder, menu::Menu,Icon};
 //!
 //! # let icon = Icon::from_rgba(Vec::new(), 0, 0).unwrap();
 //! let tray_menu = Menu::new();
@@ -68,7 +68,7 @@
 //! You can use [`TrayIconEvent::receiver`] to get a reference to the [`TrayIconEventReceiver`]
 //! which you can use to listen to events when a click happens on the tray icon
 //! ```no_run
-//! use tray_icon::TrayIconEvent;
+//! use tray_icon_ex::TrayIconEvent;
 //!
 //! if let Ok(event) = TrayIconEvent::receiver().try_recv() {
 //!     println!("{:?}", event);
@@ -78,7 +78,7 @@
 //! You can also listen for the menu events using [`MenuEvent::receiver`](crate::menu::MenuEvent::receiver) to get events for the tray context menu.
 //!
 //! ```no_run
-//! use tray_icon::{TrayIconEvent, menu::MenuEvent};
+//! use tray_icon_ex::{TrayIconEvent, menu::MenuEvent};
 //!
 //! if let Ok(event) = TrayIconEvent::receiver().try_recv() {
 //!     println!("tray event: {:?}", event);
