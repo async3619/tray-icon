@@ -221,7 +221,6 @@ impl TrayIcon {
         self.attrs.menu_on_left_click = enable;
     }
 
-    #[allow(dead_code)]
     pub fn is_dark_mode(&self) -> bool {
         if let Some(ns_status_item) = self.ns_status_item {
             unsafe {
