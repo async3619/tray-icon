@@ -227,8 +227,8 @@ impl TrayIcon {
         if let Some(button) = self.button {
             unsafe {
                 let effective_appearance: id = msg_send![button, effectiveAppearance];
-                let is_dark: bool =
-                    msg_send![effective_appearance, name] == NSAppearanceNameVibrantDark;
+                let appearance_name: id = msg_send![effective_appearance, name];
+                let is_dark: bool = appearance_name == NSAppearanceNameVibrantDark;
 
                 is_dark
             }
