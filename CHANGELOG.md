@@ -1,5 +1,9 @@
 # Changelog
 
+## \[0.12.0]
+
+- [`edb81fe`](https://github.com/async3619/tray-icon-ex/commit/edb81fe131c5794d28d90a0c1c1a26394ff35114)([#1](https://github.com/async3619/tray-icon-ex/pull/1)) Add `is_dark_mode` method to macOS specific `TrayIcon` struct. This method returns `true` if the system is in dark mode, and `false` if it is not.
+
 ## \[0.11.1]
 
 - [`6382ea5`](https://www.github.com/tauri-apps/tray-icon/commit/6382ea5b47813ce1546dff6e8a69ca053dc6f145)([#103](https://www.github.com/tauri-apps/tray-icon/pull/103)) On Linux, fix tray menu failing to show.
